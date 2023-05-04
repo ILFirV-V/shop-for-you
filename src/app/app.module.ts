@@ -30,7 +30,7 @@ import { HttpClientModule } from "@angular/common/http";
     BasketComponent,
     ProductDetailsComponent,
     BaseComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
   ],
   imports: [
     BrowserModule,

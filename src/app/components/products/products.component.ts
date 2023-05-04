@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {IProduct} from "../../models/product";
-import { Subscription } from "rxjs";
+import {Observable} from "rxjs";
 import {ProductsService} from "../../services/products.service";
 
 @Component({
@@ -9,21 +9,10 @@ import {ProductsService} from "../../services/products.service";
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  products!: IProduct[];
-  productsSubscription!: Subscription;
-
+  products: Observable<IProduct[]> | undefined;
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.productsSubscription = this.productsService.getProducts()
-      .subscribe((data) => {
-        this.products = data;
-      });
-  }
-
-  ngOnDestroy() {
-    if(this.productsSubscription) {
-      this.productsSubscription.unsubscribe();
-    }
+    this.products = this.productsService.getProducts();
   }
 }
