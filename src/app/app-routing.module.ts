@@ -8,7 +8,7 @@ import {BasketComponent} from "./components/basket/basket.component";
 const routes: Routes = [
   {path: '', component: BaseComponent},
   {path: 'products', component: ProductsComponent},
-  {path: 'products/:id', component: ProductDetailsComponent},
+  {path: 'product/:id', component: ProductDetailsComponent},
   {path: 'basket', component: BasketComponent},
   {path: '**', redirectTo: "", component: BaseComponent, pathMatch: 'full'},
 
