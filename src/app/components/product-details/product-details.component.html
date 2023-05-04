@@ -1,1 +1,22 @@
 <p>product-details works!</p>
+<div  class="container" *ngIf="(product$ | async) as product">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{product.title}}</mat-card-title>
+        <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+      </mat-card-header>
+
+      <img class="image" mat-card-image src="{{product.image}}" alt="Photo of a Shiba Inu">
+
+      <mat-card-content>
+        <p>Цена: {{product.price | currency}}</p>
+        <p>Рейтинг: {{product.rating.rate}}</p>
+        <p>Количество голосовавших: {{product.rating.rate}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="button" mat-flat-button color="primary">В корзину</button>
+        <button class="button" mat-button color="primary" routerLink="/product/{{product.id}}">Подробнее</button>
+      </mat-card-actions>
+    </mat-card>
+
+</div>
