@@ -8,9 +8,18 @@
     <span class="spacer"></span>
 
     <div class="toolbar no-select">
-      <button class="toolbar button" mat-flat-button routerLink="">Главная</button>
-      <button class="toolbar button" mat-flat-button routerLink="products">Товары</button>
-      <button class="toolbar button" mat-flat-button routerLink="basket">Корзина</button>
+      <button class="toolbar button" mat-flat-button routerLink="">
+        Главная
+        <mat-icon style="margin-right: 5px">home</mat-icon>
+      </button>
+      <button class="toolbar button" mat-flat-button routerLink="products">
+        Товары
+        <mat-icon style="margin-right: 5px">ads_click</mat-icon>
+      </button>
+      <button class="toolbar button" mat-flat-button routerLink="basket" matBadge="8" matBadgeColor="accent">
+        Корзина
+        <mat-icon style="margin-right: 5px">local_mall</mat-icon>
+      </button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

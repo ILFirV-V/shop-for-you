@@ -12,3 +12,7 @@ export interface IProductsRating {
   rate: number,
   count: number,
 }
+
+export interface IProductWithQuantity extends IProduct {
+  quantity: number;
+}
