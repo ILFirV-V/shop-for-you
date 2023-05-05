@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {IProduct} from "../../models/product";
+import {BasketService} from "../../services/basket.service";
 
 @Component({
   selector: 'app-basket',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent {
-
+  constructor(private basketService: BasketService) { }
+  
+  deleteToBasket(product: IProduct) {
+    this.basketService.deleteProductInBasketWithLocalStorage(product);
+  }
 }

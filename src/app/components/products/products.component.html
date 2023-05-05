@@ -12,7 +12,8 @@
       <p>Рейтинг: {{product.rating.rate}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button class="button" mat-flat-button color="primary">В корзину</button>
+      <button class="button" mat-flat-button color="primary"
+              (click)="addToBasket(product)" type="button">В корзину</button>
       <button class="button" mat-button color="primary" routerLink="/product/{{product.id}}">Подробнее</button>
     </mat-card-actions>
   </mat-card>

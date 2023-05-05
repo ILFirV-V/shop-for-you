@@ -6,15 +6,15 @@ import {IProduct} from "../models/product";
   providedIn: 'root'
 })
 export class ProductsService {
-  url: string = `https://fakestoreapi.com/products`
+  urlProducts: string = `https://fakestoreapi.com/products`;
 
   constructor(private http: HttpClient) { }
 
   getProducts() {
-    return this.http.get<IProduct[]>(this.url);
+    return this.http.get<IProduct[]>(this.urlProducts);
   }
 
   getProduct(id: number) {
-    return this.http.get<IProduct>(`${this.url}/${id}`);
+    return this.http.get<IProduct>(`${this.urlProducts}/${id}`);
   }
 }
