@@ -1,8 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {IProduct, IProductWithQuantity} from "../../models/product";
+import { Component, OnDestroy, OnInit} from '@angular/core';
+import { IProductWithQuantity } from "../../models/product";
 import { BasketService } from "../../services/basket.service";
-import { ProductsService } from "../../services/products.service";
-import {combineLatest, map, Observable, Subscription} from "rxjs";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-basket',
@@ -10,13 +9,13 @@ import {combineLatest, map, Observable, Subscription} from "rxjs";
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent implements OnInit, OnDestroy{
-  constructor(private basketService: BasketService, private productService: ProductsService) { }
+  constructor(private basketService: BasketService) { }
 
   basket: IProductWithQuantity[] | undefined;
   private basketSubscription: Subscription | undefined;
 
   ngOnInit() {
-    this.basketSubscription = this.getProductsFromBasket().subscribe((data: IProductWithQuantity[]) => {
+    this.basketSubscription = this.basketService.getProductsFromBasket().subscribe((data: IProductWithQuantity[]) => {
       this.basket = data;
     });
   }
@@ -24,23 +23,6 @@ export class BasketComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     if (this.basketSubscription)
       this.basketSubscription.unsubscribe();
-  }
-
-
-  getProductsFromBasket(): Observable<IProductWithQuantity[]> {
-    const basket: Record<string, number> = this.basketService.getUserBasketProductIdsWithLocalStorage();
-    const productIds: number[] = Object.keys(basket).map(Number);
-    const productObservables: Observable<IProduct>[] = productIds.map((id) =>
-      this.productService.getProductById(id)
-    );
-    return combineLatest(productObservables).pipe(
-      map((products) => {
-        return products.map((product, index) => ({
-          ...product,
-          quantity: basket[productIds[index]],
-        }));
-      })
-    );
   }
 
   deleteFromBasket(product: IProductWithQuantity) {
