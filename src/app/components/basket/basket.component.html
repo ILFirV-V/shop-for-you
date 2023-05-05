@@ -1,1 +1,16 @@
-<p>basket works!</p>
+<mat-card class="example-card" *ngFor="let product of products$ | async">
+  <mat-card-header>
+    <mat-card-title-group >
+      <mat-card-title>{{product.title}}</mat-card-title>
+      <mat-card-subtitle>Product Quantity: {{ basket && basket[product.id] }}</mat-card-subtitle>
+      <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu">
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+  </mat-card-content>
+  <mat-card-actions>
+    <button class="button" mat-flat-button color="primary"
+            (click)="deleteToBasket(product)" type="button">Удалить</button>
+    <button class="button" mat-button color="primary" routerLink="/product/{{product.id}}">Подробнее</button>
+  </mat-card-actions>
+</mat-card>

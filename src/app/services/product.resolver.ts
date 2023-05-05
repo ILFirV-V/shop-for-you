@@ -16,7 +16,7 @@ export class ProductResolver implements Resolve<IProduct> {
   constructor(private productsService: ProductsService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProduct> {
-    return this.productsService.getProduct(route.params?.['id']).pipe(
+    return this.productsService.getProductById(route.params?.['id']).pipe(
       map(response => {
         if (response == null || !Object.keys(response).length) { // Check if response is empty
           this.router.navigate(['/products']); // Redirect to homepage
