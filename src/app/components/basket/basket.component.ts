@@ -28,7 +28,7 @@ export class BasketComponent implements OnInit, OnDestroy{
 
 
   getProductsFromBasket(): Observable<IProductWithQuantity[]> {
-    const basket: Record<string, number> = this.basketService.getUserBasketProductIdWithLocalStorage();
+    const basket: Record<string, number> = this.basketService.getUserBasketProductIdsWithLocalStorage();
     const productIds: number[] = Object.keys(basket).map(Number);
     const productObservables: Observable<IProduct>[] = productIds.map((id) =>
       this.productService.getProductById(id)
@@ -43,11 +43,15 @@ export class BasketComponent implements OnInit, OnDestroy{
     );
   }
 
+  deleteFromBasket(product: IProductWithQuantity) {
+    const index = this.basket?.findIndex(p => p.id === product.id) ?? -1;
+    this.basket?.splice(index, 1);
+    this.basketService.deleteProductInBasketWithLocalStorage(product, true);
+  }
+
   minusItemFromBasket(product: IProductWithQuantity) {
     if (product.quantity === 1) {
-      const index = this.basket?.findIndex(p => p.id === product.id) ?? -1;
-      this.basket?.splice(index, 1);
-      this.basketService.deleteProductInBasketWithLocalStorage(product, true);
+      this.deleteFromBasket(product);
     } else {
       product.quantity -= 1;
       this.basketService.deleteProductInBasketWithLocalStorage(product);
@@ -59,4 +63,3 @@ export class BasketComponent implements OnInit, OnDestroy{
     this.basketService.addProductToBasketWithLocalStorage(product);
   }
 }
-
