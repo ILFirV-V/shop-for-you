@@ -36,7 +36,6 @@ export class BasketService {
       : 1;
     localStorage.setItem("basket", JSON.stringify(productsInBasket));
     this.basketUpdated.emit();
-
   }
 
   /**

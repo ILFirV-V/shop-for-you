@@ -10,11 +10,15 @@
     <div class="toolbar no-select">
       <button class="toolbar button" mat-flat-button routerLink="">
         Главная
-        <mat-icon style="margin-right: 5px">home</mat-icon>
+        <mat-icon style="margin-right: 5px">web</mat-icon>
       </button>
       <button class="toolbar button" mat-flat-button routerLink="products">
         Товары
         <mat-icon style="margin-right: 5px">ads_click</mat-icon>
+      </button>
+      <button class="toolbar button" mat-flat-button routerLink="favorites" matBadge="{{favoritesProductsCount}}" matBadgeColor="accent">
+        Избранное
+        <mat-icon style="margin-right: 5px">favorites</mat-icon>
       </button>
       <button class="toolbar button" mat-flat-button routerLink="basket" matBadge="{{productsCount}}" matBadgeColor="accent">
         Корзина

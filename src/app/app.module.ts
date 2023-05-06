@@ -19,6 +19,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatBadgeModule } from '@angular/material/badge';
 
 import { HttpClientModule } from "@angular/common/http";
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 
 
@@ -33,6 +34,7 @@ import { HttpClientModule } from "@angular/common/http";
     ProductDetailsComponent,
     BaseComponent,
     DialogBoxComponent,
+    FavoritesComponent,
   ],
   imports: [
     BrowserModule,

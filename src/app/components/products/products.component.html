@@ -3,7 +3,11 @@
     <mat-card-header>
       <mat-card-title>{{product.title}}</mat-card-title>
     </mat-card-header>
-
+    <button mat-icon-button color="accent"
+            aria-label="Example icon button with a heart icon"
+            (click)="addToFavorites(product)">
+      <mat-icon>favorite</mat-icon>
+    </button>
     <img class="image" mat-card-image src="{{product.image}}" alt="Photo of a Shiba Inu">
 
     <mat-card-content>
@@ -11,8 +15,12 @@
       <p>Рейтинг: {{product.rating.rate}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button class="button" mat-flat-button color="primary"
-              (click)="addToBasket(product)" type="button">В корзину</button>
+      <button class="button"
+              mat-flat-button color="primary"
+              (click)="addToBasket(product)"
+              type="button">
+        В корзину
+      </button>
       <button class="button" mat-button color="primary" routerLink="/product/{{product.id}}">Подробнее</button>
     </mat-card-actions>
   </mat-card>

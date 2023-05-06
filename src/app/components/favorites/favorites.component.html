@@ -1,0 +1,17 @@
+<ng-container *ngIf="favorites">
+  <mat-card class="example-card" *ngFor="let product of favorites">
+    <mat-card-header>
+      <mat-card-title-group >
+        <mat-card-title>{{product.title}}</mat-card-title>
+        <img mat-card-md-image src="{{product.image}}" alt="изображение продукта ${{product.title}}">
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="button" mat-flat-button color="primary"
+              (click)="deleteFromFavorites(product)" type="button">Удалить</button>
+      <button class="button" mat-button color="primary" routerLink="/product/{{product.id}}">Подробнее</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

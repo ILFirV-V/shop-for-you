@@ -21,8 +21,7 @@ export class BasketComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
-    if (this.basketSubscription)
-      this.basketSubscription.unsubscribe();
+    this.basketSubscription?.unsubscribe();
   }
 
   deleteFromBasket(product: IProductWithQuantity) {
