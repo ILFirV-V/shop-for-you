@@ -3,6 +3,7 @@ import {IProduct, IProductWithQuantity} from "../models/product";
 import {HttpClient} from "@angular/common/http";
 import {combineLatest, map, Observable} from "rxjs";
 import {ProductsService} from "./products.service";
+import {IShipping} from "../models/shipping";
 
 /**
  * Сервис для работы с корзиной покупок
@@ -108,5 +109,14 @@ export class BasketService {
     let count = 0;
     Object.values(basket).forEach(quantity => count += quantity);
     return count;
+  }
+
+  /**
+   * Возвращает Observable, который содержит массив объектов типа IShipping.
+   * Каждый объект представляет собой тип доставки и его стоимость и был получен через HTTP-запрос к файлу /assets/shipping.json.
+   * @returns Observable<IShipping[]>
+   */
+  getShippingPrices(): Observable<IShipping[]> {
+    return this.http.get<{type: string, price: number}[]>('/assets/shipping.json');
   }
 }

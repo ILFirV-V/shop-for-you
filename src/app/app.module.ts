@@ -17,9 +17,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatBadgeModule } from '@angular/material/badge';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { HttpClientModule } from "@angular/common/http";
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { ShippingComponent } from './components/shipping/shipping.component';
+import {MatRadioModule} from "@angular/material/radio";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -35,6 +39,7 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
     BaseComponent,
     DialogBoxComponent,
     FavoritesComponent,
+    ShippingComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,8 +51,11 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
     MatButtonModule,
     MatCardModule,
     MatBadgeModule,
+    MatSlideToggleModule,
 
-    HttpClientModule
+    HttpClientModule,
+    MatRadioModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

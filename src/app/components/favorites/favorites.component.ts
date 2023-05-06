@@ -17,7 +17,6 @@ export class FavoritesComponent {
   ngOnInit() {
     this.favoritesSubscription = this.favoritesService.getProductsInFavoritesWithLocalStorage().subscribe((data: IProduct[]) => {
       this.favorites = data;
-      console.log(data)
     });
   }
 
@@ -26,7 +25,7 @@ export class FavoritesComponent {
   }
 
   deleteFromFavorites(product: IProduct) {
-    const index = this.favorites?.findIndex(p => p.id === product.id) ?? -1;
+    const index: number = this.favorites?.findIndex(p => p.id === product.id) ?? -1;
     this.favorites?.splice(index, 1);
     this.favoritesService.deleteProductInFavoritesWithLocalStorage(product);
   }

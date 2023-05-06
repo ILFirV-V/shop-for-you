@@ -1,0 +1,14 @@
+<h3>Цены на доставку</h3>
+<section class="example-section">
+  <ng-container *ngIf="shippingCosts$">
+    <label class="example-margin">Доставка:</label>
+    <mat-radio-group [(ngModel)]="delivery">
+      <mat-radio-button class="example-margin" *ngFor="let shipping of shippingCosts$ | async"
+                        [value]="shipping"
+                        [checked]="shipping.type === delivery?.type">
+        <span>{{ shipping.type }} </span>
+        <span>{{ shipping.price | currency }}</span>
+      </mat-radio-button>
+    </mat-radio-group>
+  </ng-container>
+</section>
