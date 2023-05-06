@@ -119,4 +119,12 @@ export class BasketService {
   getShippingPrices(): Observable<IShipping[]> {
     return this.http.get<{type: string, price: number}[]>('/assets/shipping.json');
   }
+
+  /**
+  * Очищает корзину покупок
+  */
+  clearBasket(): void {
+    localStorage.removeItem("basket");
+    this.basketUpdated.emit();
+  }
 }

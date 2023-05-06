@@ -3,7 +3,9 @@
   <ng-container *ngIf="shippingCosts$">
     <label class="example-margin">Доставка:</label>
     <mat-radio-group [(ngModel)]="delivery">
-      <mat-radio-button class="example-margin" *ngFor="let shipping of shippingCosts$ | async"
+      <mat-radio-button class="example-margin"
+                        *ngFor="let shipping of shippingCosts$ | async"
+                        (click)="change(shipping)"
                         [value]="shipping"
                         [checked]="shipping.type === delivery?.type">
         <span>{{ shipping.type }} </span>

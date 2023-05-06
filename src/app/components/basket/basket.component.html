@@ -4,6 +4,7 @@
 
 <ng-container *ngIf="basket">
   <section class="half">
+    <h2>Товары: </h2>
     <mat-card class="example-card" *ngFor="let product of basket">
       <mat-card-header>
         <mat-card-title-group >
@@ -27,8 +28,9 @@
   </section>
 
   <section class="half">
-    <app-shipping></app-shipping>
-    <p>Оформить заказ</p>
-    <button mat-flat-button color="accent">Accent</button>
+    <h2>Оформить заказ</h2>
+    <app-shipping (newShippingCosts)="getNewShipping($event)"></app-shipping>
+    <p>Общая стоимость: {{ amount | currency }}</p>
+    <button mat-flat-button color="accent" (click)="orderGoods()">Заказать</button>
   </section>
 </ng-container>

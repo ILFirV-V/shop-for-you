@@ -34,4 +34,5 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.basketUpdatedSubscription?.unsubscribe();
     this.favoritesProductsUpdatedSubscription?.unsubscribe();
   }
+
 }
