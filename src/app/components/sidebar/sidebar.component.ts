@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import {SortOption, SortOrder} from "../../models/product";
 
 @Component({
   selector: 'app-sidebar',
@@ -6,13 +7,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['sidebar.component.scss']
 })
 export class SidebarComponent {
-  currentSortOption: string = 'price';
-  currentSortOrder: string = 'asc';
+  currentSortOption: SortOption = 'title';
+  currentSortOrder: SortOrder = 'asc';
   currentCategory: string = 'all';
   categories: string[] = ['1', '2', '3', '4'];
 
-  @Output() sortOptionChanged = new EventEmitter<string>();
-  @Output() sortOrderChanged = new EventEmitter<string>();
+  @Output() sortOptionChanged = new EventEmitter<SortOption>();
+  @Output() sortOrderChanged = new EventEmitter<SortOrder>();
   @Output() categoryChanged = new EventEmitter<string>();
 
   onSortOptionChange() {

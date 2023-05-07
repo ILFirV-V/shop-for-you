@@ -6,15 +6,11 @@
       Цена
     </label>
     <label>
-      <input type="radio" name="sortOption" value="name" [(ngModel)]="currentSortOption" (change)="onSortOptionChange()">
+      <input type="radio" name="sortOption" value="title" [(ngModel)]="currentSortOption" (change)="onSortOptionChange()">
       Название
     </label>
   </div>
-  <h4>Фильтровать по категории:</h4>
-  <select name="category" [(ngModel)]="currentCategory" (change)="onCategoryChange()">
-    <option value="all">Все категории</option>
-    <option *ngFor="let category of categories" [value]="category">{{category}}</option>
-  </select>
+
   <h4>Сортировать по:</h4>
   <div class="sort-order">
     <label>
@@ -26,4 +22,11 @@
       По убыванию
     </label>
   </div>
+
+  <h4>Фильтровать по категории:</h4>
+  <select name="category" [(ngModel)]="currentCategory" (change)="onCategoryChange()">
+    <option value="all">Все категории</option>
+    <option value="favorites">Избранное</option>
+    <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+  </select>
 </div>

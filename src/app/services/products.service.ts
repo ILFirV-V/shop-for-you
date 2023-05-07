@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {IProduct} from "../models/product";
-import {Observable} from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { IProduct, SortOption, SortOrder } from "../models/product";
+import { Observable } from "rxjs";
 
 /**
  * Сервис для работы с продуктами.
@@ -13,15 +13,13 @@ export class ProductsService {
   urlProducts: string = `https://fakestoreapi.com/products`;
 
   constructor(private http: HttpClient) { }
-
   /**
    * Получает список продуктов.
    * @returns Возвращает Observable с массивом продуктов.
    */
   getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.urlProducts);
+    return this.http.get<IProduct[]>(`${this.urlProducts}`)
   }
-
   /**
    * Получает продукт по его идентификатору.
    * @param id Идентификатор продукта.
@@ -35,14 +33,18 @@ export class ProductsService {
     return this.http.get<IProduct[]>(`${this.urlProducts}/category/${category}`);
   }
 
-  sortByFavoriteProducts(products: IProduct[]){
-  }
+  sortByProducts(products: IProduct[], sortOption: SortOption, sortOrder: SortOrder): IProduct[]{
+    const sortingOptions: { [key: string]: (a: IProduct, b: IProduct) => number; } = {
+      'title': (a:IProduct, b: IProduct) => a.title.localeCompare(b.title),
+      'price': (a:IProduct, b: IProduct) => a.price - b.price,
+      'category': (a:IProduct, b: IProduct) => a.category.localeCompare(b.category),
+      'rating': (a:IProduct, b: IProduct) => b.rating.rate - a.rating.rate,
+      'favorite': (a:IProduct, b:IProduct) => (a.favorite === b.favorite) ? (a.favorite ? -1 : 1) : 0
+    };
 
-  sortByAlphabet(products: IProduct[], order: string = 'asc'): IProduct[] {
-    return products.sort((a, b) => a.title.localeCompare(b.title) * (order === 'asc' ? 1 : -1));
-  }
-
-  sortByPrice(products: IProduct[], order: string = 'asc'): IProduct[] {
-    return products.sort((a, b) => (a.price - b.price) * (order === 'asc' ? 1 : -1));
+    const sortFunction = sortingOptions[sortOption] || (() => 0);
+    return products.sort((a, b) => sortOrder === "asc"
+      ? sortFunction(a, b)
+      : sortFunction(b, a));
   }
 }

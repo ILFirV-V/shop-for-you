@@ -1,4 +1,4 @@
-export interface  IProduct {
+export interface IProduct {
   id: number,
   title: string,
   price: number,
@@ -6,6 +6,7 @@ export interface  IProduct {
   description: string,
   image: string,
   rating: IProductsRating,
+  favorite: boolean,
 }
 
 export interface IProductsRating {
@@ -16,3 +17,8 @@ export interface IProductsRating {
 export interface IProductWithQuantity extends IProduct {
   quantity: number;
 }
+export type SortOption = keyof IProduct;
+export type SortOrder = "asc" | "desc";
+// export interface IProductWithFavorite extends IProduct {
+//   favorite: boolean;
+// }
