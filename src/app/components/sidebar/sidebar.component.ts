@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import {SortOption, SortOrder} from "../../models/product";
+import { map, take } from "rxjs";
+import {ProductsService} from "../../services/products.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -7,18 +9,33 @@ import {SortOption, SortOrder} from "../../models/product";
   styleUrls: ['sidebar.component.scss']
 })
 export class SidebarComponent {
-  currentSortOption: SortOption | undefined;
-  currentSortOrder: SortOrder | undefined;
+  currentSortOption: SortOption = "id";
+  currentSortOrder: SortOrder = "asc";
   currentCategory: string = 'all';
-  categories: string[] = ['1', '2', '3', '4'];
+  categories: string[] = [];
   searchValue: string = '';
 
   filters: {name: string, value: SortOption}[] = [
+    {name: 'без сортировки', value: 'id'},
     {name: 'название', value: 'title'},
     {name: 'цена', value: 'price'},
     {name: 'категория', value: 'category'},
     {name: 'рейтинг', value: 'rating'},
   ];
+
+  constructor(private productService: ProductsService) { }
+
+  ngOnInit() {
+    this.productService.getCategoriesByProducts()
+      .pipe(
+        map(categories => ['all', 'favorites', ...categories]),
+        take(1)
+      )
+      .subscribe(categories => {
+        this.categories = categories;
+      });
+  }
+
   @Output() sortOptionChanged = new EventEmitter<SortOption>();
   @Output() sortOrderChanged = new EventEmitter<SortOrder>();
   @Output() categoryChanged = new EventEmitter<string>();
@@ -26,7 +43,6 @@ export class SidebarComponent {
 
   onSortOptionChange() {
     this.sortOptionChanged.emit(this.currentSortOption);
-    console.log(123)
   }
 
   onSortOrderChange() {

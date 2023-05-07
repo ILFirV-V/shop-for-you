@@ -32,6 +32,14 @@ export class ProductsService {
   }
 
   /**
+   * Получение списка категорий товаров из API.
+   * @returns массив строк - названия категорий товаров.
+   */
+  getCategoriesByProducts(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.urlProducts}/categories`);
+  }
+
+  /**
    * Получает список продуктов по категории.
    * @param category Название категории продукта.
    * @returns Возвращает Observable с массивом продуктов.
@@ -43,7 +51,7 @@ export class ProductsService {
   /**
    * Сортирует список продуктов по заданным параметрам сортировки.
    * @param products Массив продуктов для сортировки.
-   * @param sortOption Параметр сортировки (название, цена, категория, рейтинг, избранное).
+   * @param sortOption Параметр сортировки (название, цена, категория, рейтинг, id).
    * @param sortOrder Порядок сортировки (по возрастанию или убыванию).
    * @returns Возвращает отсортированный массив продуктов.
    */
@@ -53,10 +61,10 @@ export class ProductsService {
       'price': (a:IProduct, b: IProduct) => a.price - b.price,
       'category': (a:IProduct, b: IProduct) => a.category.localeCompare(b.category),
       'rating': (a:IProduct, b: IProduct) => a.rating.rate - b.rating.rate,
-      'favorite': (a:IProduct, b:IProduct) => (a.favorite === b.favorite) ? (a.favorite ? -1 : 1) : 0,
+      'id': (a:IProduct, b: IProduct) => a.id - b.id,
     };
 
-    const sortFunction = sortingOptions[sortOption] || (() => 0);
+    const sortFunction = sortingOptions[sortOption];
     return products.sort((a, b) => sortOrder === "asc"
       ? sortFunction(a, b)
       : sortFunction(b, a));

@@ -1,6 +1,6 @@
 <div class="sidebar__box">
   <mat-form-field class="full-width">
-    <mat-label>Поможем найти</mat-label>
+    <mat-label>Найти:</mat-label>
     <input matInput type="text" [(ngModel)]="searchValue" (input)="onSearch()" placeholder="Поиск...">
   </mat-form-field>
 
@@ -23,8 +23,6 @@
     <div class="sort-category">
       <label>Категории:</label>
       <select name="category" [(ngModel)]="currentCategory" (change)="onCategoryChange()">
-        <option value="all">Все категории</option>
-        <option value="favorites">Избранное</option>
         <option *ngFor="let category of categories" [value]="category">{{category}}</option>
       </select>
     </div>

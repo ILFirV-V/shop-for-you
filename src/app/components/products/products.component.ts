@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {IProduct, SortOption, SortOrder} from "../../models/product";
-import { Subscription } from "rxjs";
+import {Subscription, take} from "rxjs";
 import {ProductsService} from "../../services/products.service";
 import {BasketService} from "../../services/basket.service";
 import {FavoritesService} from "../../services/favorites.service";
@@ -12,12 +12,13 @@ import {FavoritesService} from "../../services/favorites.service";
 })
 export class ProductsComponent implements OnInit {
   products: IProduct[] = [];
-  allProducts: IProduct[] = [];
+  allProductsNotView: IProduct[] = [];
   productsSubscription: Subscription | undefined;
 
-  sortOption: SortOption = "favorite";
+  sortOption: SortOption = "id";
   sortOrder: SortOrder = "asc";
   searchValue: string = '';
+
   constructor(
     private productsService: ProductsService,
     private basketService: BasketService,
@@ -25,42 +26,67 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.productsSubscription = this.productsService.getProducts().subscribe((data) => {
+    this.productsService.getProducts().pipe(
+      take(1)
+    ).subscribe((data) => {
         this.products = data;
-        this.allProducts = data;
+        this.allProductsNotView = data;
       }
     );
   }
-  ngOnDestroy() {
-    this.productsSubscription?.unsubscribe();
-  }
 
-  addToFavorites(product: IProduct) {
+  addToFavorites(product: IProduct): void {
     this.favoritesService.addProductToFavoritesWithLocalStorage(product);
   }
 
-  addToBasket(product: IProduct) {
+  addToBasket(product: IProduct): void {
     this.basketService.addProductToBasketWithLocalStorage(product);
   }
 
   loadProducts(): void {
     this.products = this.productsService.sortByProducts(this.products, this.sortOption, this.sortOrder);
-    this.products = this.allProducts.filter(product =>
-      product.title.toLowerCase().includes(this.searchValue.toLowerCase()));
   }
 
-  onSortOptionChanged(sortOption: SortOption) {
+  onSortOptionChanged(sortOption: SortOption): void {
     this.sortOption = sortOption;
     this.loadProducts();
   }
-  onSortOrderChanged(sortOrder: SortOrder) {
+
+  onSortOrderChanged(sortOrder: SortOrder): void {
     this.sortOrder = sortOrder;
     this.loadProducts();
   }
-  onSearch(searchValue: string) {
 
+  onSearch(searchValue: string): void {
     this.searchValue = searchValue;
     this.loadProducts();
+    this.products = this.allProductsNotView.filter(product =>
+      product.title.toLowerCase().includes(this.searchValue.toLowerCase()));
+  }
 
+  onCategories(category: string) {
+    switch (category) {
+      case 'all':
+        this.products = this.allProductsNotView;
+        break;
+
+      case 'favorites':
+        this.favoritesService.getProductsInFavoritesWithLocalStorage().pipe(
+          take(1)
+        ).subscribe((data: IProduct[]) => {
+          this.products = data;
+        });
+        break;
+
+      default:
+        this.productsService.getProductsByCategory(category).pipe(
+          take(1)
+        ).subscribe((data) => {
+            this.products = data;
+          }
+        );
+        break;
+    }
+    this.loadProducts();
   }
 }

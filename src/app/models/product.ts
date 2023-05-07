@@ -6,7 +6,6 @@ export interface IProduct {
   description: string,
   image: string,
   rating: IProductsRating,
-  favorite: boolean,
 }
 
 export interface IProductsRating {
@@ -17,8 +16,6 @@ export interface IProductsRating {
 export interface IProductWithQuantity extends IProduct {
   quantity: number;
 }
-export type SortOption = "title" | "price" | "category" | "rating" | "favorite";
+
+export type SortOption = "title" | "price" | "category" | "rating" | "id";
 export type SortOrder = "asc" | "desc";
-// export interface IProductWithFavorite extends IProduct {
-//   favorite: boolean;
-// }
