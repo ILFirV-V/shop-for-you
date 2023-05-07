@@ -2,8 +2,10 @@
   <app-sidebar
     (sortOptionChanged)="onSortOptionChanged($event)"
     (sortOrderChanged)="onSortOrderChanged($event)"
+    (searchChanged)="onSearch($event)"
   ></app-sidebar>
 </div>
+
 <div class="container">
   <mat-spinner *ngIf="!products"></mat-spinner>
   <mat-card

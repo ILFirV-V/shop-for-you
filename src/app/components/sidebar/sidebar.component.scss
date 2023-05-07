@@ -1,8 +1,11 @@
-.sidebar {
-  display: flex;
+.sidebar__box {
   background-color: #f2f2f2;
   padding: 10px 15px;
   border-radius: 5px;
+}
+
+.filters {
+  display: flex;
 
   .sort-options, .sort-order, .sort-category  {
     display: flex;
@@ -39,4 +42,8 @@
       }
     }
   }
+}
+
+.full-width {
+  width: 100%;
 }

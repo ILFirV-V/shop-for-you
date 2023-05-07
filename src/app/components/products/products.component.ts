@@ -12,11 +12,12 @@ import {FavoritesService} from "../../services/favorites.service";
 })
 export class ProductsComponent implements OnInit {
   products: IProduct[] = [];
+  allProducts: IProduct[] = [];
   productsSubscription: Subscription | undefined;
 
   sortOption: SortOption = "favorite";
   sortOrder: SortOrder = "asc";
-
+  searchValue: string = '';
   constructor(
     private productsService: ProductsService,
     private basketService: BasketService,
@@ -26,6 +27,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.productsSubscription = this.productsService.getProducts().subscribe((data) => {
         this.products = data;
+        this.allProducts = data;
       }
     );
   }
@@ -43,6 +45,8 @@ export class ProductsComponent implements OnInit {
 
   loadProducts(): void {
     this.products = this.productsService.sortByProducts(this.products, this.sortOption, this.sortOrder);
+    this.products = this.allProducts.filter(product =>
+      product.title.toLowerCase().includes(this.searchValue.toLowerCase()));
   }
 
   onSortOptionChanged(sortOption: SortOption) {
@@ -52,5 +56,11 @@ export class ProductsComponent implements OnInit {
   onSortOrderChanged(sortOrder: SortOrder) {
     this.sortOrder = sortOrder;
     this.loadProducts();
+  }
+  onSearch(searchValue: string) {
+
+    this.searchValue = searchValue;
+    this.loadProducts();
+
   }
 }

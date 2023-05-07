@@ -52,7 +52,7 @@ export class ProductsService {
       'title': (a:IProduct, b: IProduct) => a.title.localeCompare(b.title),
       'price': (a:IProduct, b: IProduct) => a.price - b.price,
       'category': (a:IProduct, b: IProduct) => a.category.localeCompare(b.category),
-      'rating': (a:IProduct, b: IProduct) => b.rating.rate - a.rating.rate,
+      'rating': (a:IProduct, b: IProduct) => a.rating.rate - b.rating.rate,
       'favorite': (a:IProduct, b:IProduct) => (a.favorite === b.favorite) ? (a.favorite ? -1 : 1) : 0,
     };
 

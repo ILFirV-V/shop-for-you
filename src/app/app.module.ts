@@ -17,14 +17,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatBadgeModule } from '@angular/material/badge';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from "@angular/material/radio";
 
 import { HttpClientModule } from "@angular/common/http";
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { ShippingComponent } from './components/shipping/shipping.component';
-import {MatRadioModule} from "@angular/material/radio";
 import {FormsModule} from "@angular/forms";
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
@@ -54,7 +54,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatBadgeModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-    MatSelectModule,
+    MatInputModule,
 
     HttpClientModule,
     MatRadioModule,
