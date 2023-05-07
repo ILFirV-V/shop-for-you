@@ -1,0 +1,42 @@
+.sidebar {
+  display: flex;
+  background-color: #f2f2f2;
+  padding: 10px 15px;
+  border-radius: 5px;
+
+  .sort-options, .sort-order, .sort-category  {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 33.33%;
+    box-sizing: border-box;
+    padding-right: 10px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    select {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      background-color: #fff;
+
+      option {
+        padding: 10px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        color: #333;
+
+        &:hover {
+          background-color: #ccc;
+        }
+      }
+    }
+  }
+}

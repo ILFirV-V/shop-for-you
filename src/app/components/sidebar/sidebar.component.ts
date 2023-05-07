@@ -7,11 +7,18 @@ import {SortOption, SortOrder} from "../../models/product";
   styleUrls: ['sidebar.component.scss']
 })
 export class SidebarComponent {
-  currentSortOption: SortOption = 'title';
-  currentSortOrder: SortOrder = 'asc';
+  currentSortOption: SortOption | undefined;
+  currentSortOrder: SortOrder | undefined;
   currentCategory: string = 'all';
   categories: string[] = ['1', '2', '3', '4'];
 
+  filters: {name: string, value: SortOption}[] = [
+    {name: 'название', value: 'title'},
+    {name: 'цена', value: 'price'},
+    {name: 'категория', value: 'category'},
+    {name: 'рейтинг', value: 'rating'},
+    {name: 'избранное', value: 'favorite'}
+  ];
   @Output() sortOptionChanged = new EventEmitter<SortOption>();
   @Output() sortOrderChanged = new EventEmitter<SortOrder>();
   @Output() categoryChanged = new EventEmitter<string>();

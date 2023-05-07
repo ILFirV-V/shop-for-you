@@ -2,18 +2,76 @@
   margin: 0 auto 0;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: stretch;
+  justify-content: center;
 }
 
-mat-card {
+.product-card {
+  width: 300px;
+  margin: 20px;
+  min-height: 400px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mat-card-header {
+  display: flex;
+  margin-bottom: auto;
+}
+
+.favorite-button {
+  margin-left: auto;
+}
+
+.mat-card-header, .mat-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mat-card-title, .mat-card-subtitle, .mat-card-content, .product-price, .product-rating, p {
+  margin: 0;
+}
+
+.product-image {
+  object-fit: contain;
+  height: 200px;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-to-basket-button, .details-button {
+  flex-grow: 1;
+}
+
+.add-to-basket-button {
   margin-right: 10px;
 }
 
-.image {
-  max-width: 300px;
+.add-to-basket-button, .details-button {
+  margin: 0;
 }
 
-.button {
-  margin-right: 5px;
+/* 3 карточки в ряду */
+@media (min-width: 1200px) {
+  .product-card {
+    flex-basis: calc(33.33% - 40px);
+  }
+}
+
+/* 2 карточки в ряду */
+@media (max-width: 768px) {
+  .product-card {
+    flex-basis: calc(50% - 40px);
+  }
+}
+
+/* 1 карточка в ряду */
+@media (max-width: 576px) {
+  .product-card {
+    flex-basis: calc(100% - 40px);
+  }
 }

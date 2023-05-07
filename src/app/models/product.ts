@@ -17,7 +17,7 @@ export interface IProductsRating {
 export interface IProductWithQuantity extends IProduct {
   quantity: number;
 }
-export type SortOption = keyof IProduct;
+export type SortOption = "title" | "price" | "category" | "rating" | "favorite";
 export type SortOrder = "asc" | "desc";
 // export interface IProductWithFavorite extends IProduct {
 //   favorite: boolean;

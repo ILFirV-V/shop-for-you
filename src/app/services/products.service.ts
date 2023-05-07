@@ -53,7 +53,7 @@ export class ProductsService {
       'price': (a:IProduct, b: IProduct) => a.price - b.price,
       'category': (a:IProduct, b: IProduct) => a.category.localeCompare(b.category),
       'rating': (a:IProduct, b: IProduct) => b.rating.rate - a.rating.rate,
-      'favorite': (a:IProduct, b:IProduct) => (a.favorite === b.favorite) ? (a.favorite ? -1 : 1) : 0
+      'favorite': (a:IProduct, b:IProduct) => (a.favorite === b.favorite) ? (a.favorite ? -1 : 1) : 0,
     };
 
     const sortFunction = sortingOptions[sortOption] || (() => 0);
