@@ -1,17 +1,17 @@
 <div class="sidebar">
-  <app-sidebar
+  <app-product-filter
     (sortOptionChanged)="onSortOptionChanged($event)"
     (sortOrderChanged)="onSortOrderChanged($event)"
     (searchChanged)="onSearch($event)"
     (categoryChanged)="onCategories($event)"
-  ></app-sidebar>
+  ></app-product-filter>
 </div>
 
 <div class="container">
   <mat-spinner *ngIf="!products"></mat-spinner>
   <mat-card
     class="product-card"
-    *ngFor="let product of products"
+    *ngFor="let product of products.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage)"
   >
     <mat-card-header class="mat-card-header">
       <mat-card-title>{{product.title}}</mat-card-title>
@@ -58,3 +58,10 @@
     </mat-card-actions>
   </mat-card>
 </div>
+<app-pagination
+  [productLength]="products.length"
+  [productsPerPage]="productsPerPage"
+  (pageChange)="onPageChange($event)"
+>
+</app-pagination>
+

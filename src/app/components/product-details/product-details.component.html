@@ -5,8 +5,15 @@
         <mat-card-title>{{product.title}}</mat-card-title>
         <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
       </mat-card-header>
-
-      <img class="image" mat-card-image src="{{product.image}}" alt="Photo of a Shiba Inu">
+      <button
+        mat-icon-button
+        class="favorite-button"
+        color="accent"
+        (click)="addToFavorites(product)"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <img class="image" mat-card-image src="{{product.image}}" alt="изображение продукта">
 
       <mat-card-content>
         <p>Цена: {{product.price | currency}}</p>

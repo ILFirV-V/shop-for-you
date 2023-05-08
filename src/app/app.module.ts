@@ -10,7 +10,6 @@ import { ProductsComponent } from './components/products/products.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { BaseComponent } from './components/base/base.component';
-import { DialogBoxComponent } from './components/UI/dialog-box/dialog-box.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,9 +23,10 @@ import { MatRadioModule } from "@angular/material/radio";
 
 import { HttpClientModule } from "@angular/common/http";
 import { FavoritesComponent } from './components/favorites/favorites.component';
-import { ShippingComponent } from './components/shipping/shipping.component';
+import { ShippingComponent } from './components/UI/shipping/shipping.component';
 import {FormsModule} from "@angular/forms";
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ProductFilterComponent } from './components/UI/product-filter/product-filter.component';
+import { PaginationComponent } from './components/UI/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -37,10 +37,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     BasketComponent,
     ProductDetailsComponent,
     BaseComponent,
-    DialogBoxComponent,
     FavoritesComponent,
     ShippingComponent,
-    SidebarComponent,
+    ProductFilterComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

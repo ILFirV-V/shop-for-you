@@ -19,6 +19,9 @@ export class ProductsComponent implements OnInit {
   sortOrder: SortOrder = "asc";
   searchValue: string = '';
 
+  currentPage = 1;
+  productsPerPage = 12;
+
   constructor(
     private productsService: ProductsService,
     private basketService: BasketService,
@@ -33,6 +36,10 @@ export class ProductsComponent implements OnInit {
         this.allProductsNotView = data;
       }
     );
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
   }
 
   addToFavorites(product: IProduct): void {

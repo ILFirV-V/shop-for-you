@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import {SortOption, SortOrder} from "../../models/product";
+import {SortOption, SortOrder} from "../../../models/product";
 import { map, take } from "rxjs";
-import {ProductsService} from "../../services/products.service";
+import {ProductsService} from "../../../services/products.service";
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: 'sidebar.component.html',
-  styleUrls: ['sidebar.component.scss']
+  selector: 'app-product-filter',
+  templateUrl: 'product-filter.component.html',
+  styleUrls: ['product-filter.component.scss']
 })
-export class SidebarComponent {
+export class ProductFilterComponent {
   currentSortOption: SortOption = "id";
   currentSortOrder: SortOrder = "asc";
   currentCategory: string = 'all';

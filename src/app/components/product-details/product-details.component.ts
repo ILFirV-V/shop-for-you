@@ -3,6 +3,7 @@ import { IProduct} from "../../models/product";
 import { map, Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import {BasketService} from "../../services/basket.service";
+import {FavoritesService} from "../../services/favorites.service";
 
 @Component({
   selector: 'app-product-details',
@@ -11,7 +12,10 @@ import {BasketService} from "../../services/basket.service";
 })
 export class ProductDetailsComponent {
   product$: Observable<IProduct> | undefined;
-  constructor(private route: ActivatedRoute, private basketService: BasketService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private basketService: BasketService,
+    private favoritesService: FavoritesService) {}
 
   ngOnInit() {
     this.product$ = this.route.data.pipe(
@@ -21,5 +25,9 @@ export class ProductDetailsComponent {
 
   addToBasket(product: IProduct) {
     this.basketService.addProductToBasketWithLocalStorage(product);
+  }
+
+  addToFavorites(product: IProduct): void {
+    this.favoritesService.addProductToFavoritesWithLocalStorage(product);
   }
 }

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {Observable, Subscription, take} from "rxjs";
-import {BasketService} from "../../services/basket.service";
-import {IShipping} from "../../models/shipping";
+import {BasketService} from "../../../services/basket.service";
+import {IShipping} from "../../../models/shipping";
 
 @Component({
   selector: 'app-shipping',
