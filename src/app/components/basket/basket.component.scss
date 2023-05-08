@@ -1,10 +1,65 @@
-.example-card {
-  max-width: 400px;
-  margin-bottom: 8px;
+.empty-basket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
 }
 
-.half {
-  width: 50%;
-  height: 50%;
-  float: left;
+.basket-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding-left: 50px;
+}
+
+.card-header {
+  display: flex;
+  margin-bottom: auto;
+}
+
+.basket-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-rating-box {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-right: 5px;
+  }
+}
+
+.basket-products {
+  width: 70%;
+}
+
+.basket-cards {
+  margin: 20px;
+  min-height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.basket-card {
+  margin: 20px;
+  width: 45%;
+}
+
+.basket-order {
+  width: 30%;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.basket-order h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.basket-image {
+  object-fit: contain;
+  height: 300px;
 }

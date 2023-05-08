@@ -1,36 +1,52 @@
-<ng-container *ngIf="!basket">
-  <p>Товаров в корзине пока нет</p>
+<ng-container *ngIf="!basket || basket.length === 0">
+  <div class="empty-basket">
+    <h2 class="text-primary">Корзина пуста!</h2>
+    <p class="lead">Самое время начать покупки!</p>
+  </div>
 </ng-container>
 
-<ng-container *ngIf="basket">
-  <section class="half">
-    <h2>Товары: </h2>
-    <mat-card class="example-card" *ngFor="let product of basket">
-      <mat-card-header>
-        <mat-card-title-group >
-          <mat-card-title>{{product.title}}</mat-card-title>
-          <mat-card-subtitle>Product Quantity: {{ product.quantity }}</mat-card-subtitle>
-          <img mat-card-md-image src="{{product.image}}"  alt="Image of a Shiba Inu">
-        </mat-card-title-group>
-      </mat-card-header>
-      <mat-card-content>
-      </mat-card-content>
-      <mat-card-actions>
-        <button class="button" mat-flat-button color="primary"
-                (click)="deleteFromBasket(product)" type="button">Удалить</button>
-        <button class="button" mat-flat-button color="primary"
-                (click)="plusItemFromBasket(product)" type="button">+</button>
-        <button class="button" mat-flat-button color="primary"
-                (click)="minusItemFromBasket(product)" type="button">-</button>
-        <button class="button" mat-button color="primary" routerLink="/product/{{product.id}}">Подробнее</button>
-      </mat-card-actions>
-    </mat-card>
-  </section>
+<div *ngIf="basket && basket.length > 0">
+  <div class="basket-container">
+    <div class="basket-products">
+      <h2>Товары: </h2>
+      <div class="basket-cards">
+        <mat-card class="basket-card" *ngFor="let product of basket">
+          <mat-card-header class="card-header">
+            <mat-card-title>{{ product.title }}</mat-card-title>
+            <mat-card-subtitle>Количество: {{ product.quantity }}</mat-card-subtitle>
+          </mat-card-header>
+          <img
+            class="basket-image"
+            mat-card-image
+            [src]="product.image"
+            alt="Картинка продукта"
+          />
+          <mat-card-content class="basket-content">
+            <div class="product-rating-box">
+              <span>Рейтинг: {{product.rating.rate}}</span>
+              <mat-icon class="toolbar icon">stars</mat-icon>
+            </div>
 
-  <section class="half">
-    <h2>Оформить заказ</h2>
-    <app-shipping (newShippingCosts)="getNewShipping($event)"></app-shipping>
-    <p>Общая стоимость: {{ amount | currency }}</p>
-    <button mat-flat-button color="accent" (click)="orderGoods()">Заказать</button>
-  </section>
-</ng-container>
+            <p class="product-price">Цена: {{product.price | currency}}</p>
+         </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="warn" (click)="deleteFromBasket(product)">Удалить</button>
+            <button mat-button color="primary" (click)="plusItemFromBasket(product)">+</button>
+            <button mat-button color="primary" (click)="minusItemFromBasket(product)">-</button>
+            <button mat-button color="primary" [routerLink]="'/product/' + product.id">Подробнее</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="basket-order">
+      <h2>Оформить заказ</h2>
+      <app-shipping (newShippingCosts)="getNewShipping($event)"></app-shipping>
+      <div class="basket-order-summary">
+<!--        <p>Стоимость товаров: {{ calculateSubtotal() | currency }}</p>-->
+        <p>Доставка: {{ delivery.price | currency }}</p>
+        <p class="basket-order-total">Общая стоимость: {{ amount | currency }}</p>
+      </div>
+      <button mat-flat-button color="accent" [disabled]="!basket.length" (click)="orderGoods()">Заказать</button>
+    </div>
+  </div>
+</div>
