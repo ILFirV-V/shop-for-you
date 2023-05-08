@@ -20,6 +20,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from "@angular/material/radio";
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { HttpClientModule } from "@angular/common/http";
 import { FavoritesComponent } from './components/favorites/favorites.component';
@@ -55,6 +57,8 @@ import { PaginationComponent } from './components/UI/pagination/pagination.compo
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     MatInputModule,
+    MatSidenavModule,
+    MatMenuModule,
 
     HttpClientModule,
     MatRadioModule,

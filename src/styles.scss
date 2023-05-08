@@ -5,13 +5,10 @@
 
 html, body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.footer {
-  position: fixed;
-  bottom: 0;
+.wrapper {
+  min-height: 80%;
 }

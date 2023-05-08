@@ -19,6 +19,11 @@
     }
   }
 
+  .navigate {
+    display: flex;
+    align-items: center;
+  }
+
   .active {
     background-color: #4caf50;
     color: #fff;
@@ -26,5 +31,21 @@
 
   span {
     margin: 0 10px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .pagination {
+    flex-wrap: wrap;
+    button {
+      margin: 5px;
+      font-size: 12px;
+      padding: 3px 6px;
+    }
+    .navigate {
+      margin-top: 10px;
+    }
+    span {
+      display: none;
+    }
   }
 }

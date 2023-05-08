@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BasketService } from "../../../services/basket.service";
 import { Subscription } from "rxjs";
-import {FavoritesService} from "../../../services/favorites.service";
+import { FavoritesService } from "../../../services/favorites.service";
 
 @Component({
   selector: 'app-header',
@@ -34,5 +34,4 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.basketUpdatedSubscription?.unsubscribe();
     this.favoritesProductsUpdatedSubscription?.unsubscribe();
   }
-
 }

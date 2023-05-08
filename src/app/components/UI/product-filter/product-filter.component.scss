@@ -47,3 +47,17 @@
 .full-width {
   width: 100%;
 }
+@media screen and (max-width: 767px) {
+  .filters {
+    flex-wrap: wrap;
+
+    .sort-options, .sort-order, .sort-category {
+      width: 100%;
+      margin-right: 0;
+
+      &:last-child {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
