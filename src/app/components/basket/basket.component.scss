@@ -7,9 +7,15 @@
 
 .basket-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin-top: 50px;
-  padding-left: 50px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-left: 50px;
+  }
 }
 
 .card-header {
@@ -19,8 +25,14 @@
 
 .basket-content {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media screen and (min-width: 897px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .product-rating-box {
@@ -32,34 +44,70 @@
   }
 }
 
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  @media screen and (max-width: 1025px) {
+
+    flex-direction: column;
+  }
+}
+
 .basket-products {
-  width: 70%;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    width: 70%;
+    margin-right: 20px;
+  }
 }
 
 .basket-cards {
   margin: 20px;
-  min-height: 400px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .basket-card {
   margin: 20px;
-  width: 45%;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    width: 45%;
+  }
 }
 
 .basket-order {
-  width: 30%;
   background-color: #f5f5f5;
   padding: 20px;
+
+  @media screen and (min-width: 768px) {
+    width: 30%;
+    margin-top: 20px;
+  }
 }
 
 .basket-order h2 {
   margin-top: 0;
   margin-bottom: 20px;
 }
+
 .basket-image {
   object-fit: contain;
-  height: 300px;
+  height: 200px;
+}
+
+.basket-order-summary {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  p {
+    margin: 5px 0;
+  }
+}
+
+.basket-order-total {
+  font-weight: bold;
 }
