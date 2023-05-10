@@ -1,46 +1,114 @@
-.empty-basket {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 300px;
+.basket {
+  &__empty {
+    min-height: 300px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-left: 50px;
+    }
+  }
+
+  &__products {
+    width: 100%;
+
+    @media screen and (min-width: 768px) {
+      width: 70%;
+      margin-right: 20px;
+    }
+  }
+
+  &__cards {
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__order {
+    background-color: #f5f5f5;
+    padding: 20px;
+
+    @media screen and (min-width: 768px) {
+      width: 30%;
+      margin-top: 20px;
+    }
+  }
 }
 
-.basket-container {
-  display: flex;
-  flex-direction: column;
-  margin-top: 50px;
+.card {
+  &__box {
+    margin: 20px;
+    width: 100%;
 
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
+    @media screen and (min-width: 768px) {
+      width: 45%;
+    }
+  }
+
+  &__header {
+    display: flex;
+    margin-bottom: auto;
+  }
+
+  &__image {
+    object-fit: contain;
+    height: 200px;
+    @media screen and (max-width: 900px) {
+      height: 150px;
+    }
+
+    @media screen and (max-width: 360px) {
+      height: 100px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    padding-left: 50px;
+
+    @media screen and (min-width: 897px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
-}
 
-.card-header {
-  display: flex;
-  margin-bottom: auto;
-}
-
-.basket-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  @media screen and (min-width: 897px) {
-    flex-direction: row;
-    justify-content: space-between;
+  &__rating-box {
+    display: flex;
     align-items: center;
+
+    span {
+      margin-right: 5px;
+    }
   }
 }
 
-.product-rating-box {
-  display: flex;
-  align-items: center;
+.order {
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 
-  span {
-    margin-right: 5px;
+    p {
+      margin: 5px 0;
+    }
+  }
+
+  &__total {
+    font-weight: bold;
+  }
+
+  &__title {
+    margin-top: 0;
+    margin-bottom: 20px;
   }
 }
 
@@ -53,61 +121,23 @@ mat-card-actions {
   }
 }
 
-.basket-products {
-  width: 100%;
-
-  @media screen and (min-width: 768px) {
-    width: 70%;
-    margin-right: 20px;
+.empty {
+  &__box {
+    margin: 0 50px;
   }
-}
 
-.basket-cards {
-  margin: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.basket-card {
-  margin: 20px;
-  width: 100%;
-
-  @media screen and (min-width: 768px) {
-    width: 45%;
+  &__title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
   }
-}
 
-.basket-order {
-  background-color: #f5f5f5;
-  padding: 20px;
-
-  @media screen and (min-width: 768px) {
-    width: 30%;
-    margin-top: 20px;
+  &__subtitle {
+    font-size: 18px;
+    margin-bottom: 30px;
   }
-}
 
-.basket-order h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-.basket-image {
-  object-fit: contain;
-  height: 200px;
-}
-
-.basket-order-summary {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-
-  p {
-    margin: 5px 0;
+  &__button {
+    margin-top: 30px;
   }
-}
-
-.basket-order-total {
-  font-weight: bold;
 }

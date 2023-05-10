@@ -66,9 +66,9 @@ export class ProductsComponent implements OnInit {
 
   onSearch(searchValue: string): void {
     this.searchValue = searchValue;
-    this.loadProducts();
     this.products = this.allProductsNotView.filter(product =>
       product.title.toLowerCase().includes(this.searchValue.toLowerCase()));
+    this.loadProducts();
   }
 
   onCategories(category: string) {

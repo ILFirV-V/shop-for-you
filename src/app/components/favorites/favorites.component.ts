@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { IProduct } from "../../models/product";
 import { Subscription } from "rxjs";
 import { FavoritesService } from "../../services/favorites.service";
@@ -8,7 +8,7 @@ import { FavoritesService } from "../../services/favorites.service";
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss']
 })
-export class FavoritesComponent {
+export class FavoritesComponent implements OnInit, OnDestroy{
   constructor(private favoritesService: FavoritesService) { }
 
   favorites: IProduct[] | undefined;

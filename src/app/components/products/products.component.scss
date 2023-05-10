@@ -35,7 +35,7 @@
 
 .product-image {
   object-fit: contain;
-  height: 200px;
+  height: 250px;
 }
 
 .mat-card-actions {
@@ -59,6 +59,10 @@
 @media (min-width: 1200px) {
   .product-card {
     flex-basis: calc(33.33% - 40px);
+    width: 100%;
+  }
+  .product-image {
+    height: 200px;
   }
 }
 
@@ -66,12 +70,19 @@
 @media (max-width: 768px) {
   .product-card {
     flex-basis: calc(50% - 40px);
+    width: 100%;
+  }
+  .product-image {
+    height: 150px;
   }
 }
 
-/* 1 карточка в ряду */
 @media (max-width: 576px) {
   .product-card {
     flex-basis: calc(100% - 40px);
+    width: 100%;
+  }
+  .product-image {
+    height: 100px;
   }
 }

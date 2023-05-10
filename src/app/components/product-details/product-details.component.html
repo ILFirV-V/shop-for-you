@@ -1,28 +1,36 @@
-<p>product-details works!</p>
-<div  class="container" *ngIf="(product$ | async) as product">
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>{{product.title}}</mat-card-title>
-        <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
-      </mat-card-header>
-      <button
-        mat-icon-button
-        class="favorite-button"
-        color="accent"
-        (click)="addToFavorites(product)"
-      >
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <img class="image" mat-card-image src="{{product.image}}" alt="изображение продукта">
+<div class="product-details__container" *ngIf="(product$ | async) as product">
+  <mat-card class="product-details__card">
+    <mat-card-header>
+      <mat-card-title>{{product.title}}</mat-card-title>
+      <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+    </mat-card-header>
 
-      <mat-card-content>
-        <p>Цена: {{product.price | currency}}</p>
-        <p>Рейтинг: {{product.rating.rate}}</p>
-        <p>Количество голосовавших: {{product.rating.rate}}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button class="button" mat-flat-button color="primary" (click)="addToBasket(product)">В корзину</button>
-      </mat-card-actions>
-    </mat-card>
+    <button mat-icon-button class="product-details__favorite-button" color="accent" (click)="addToFavorites(product)">
+      <mat-icon>favorite</mat-icon>
+    </button>
 
+    <div class="product-details__image-container">
+      <img class="product-details__image" mat-card-image [src]="product.image" alt="изображение продукта">
+    </div>
+
+    <mat-card-content>
+      <p>{{product.description}}</p>
+      <div class="product-details__info">
+        <span>Цена: {{product.price | currency}}</span>
+        <mat-icon class="toolbar icon">payments</mat-icon>
+      </div>
+      <div class="product-details__info">
+        <span>Рейтинг: {{product.rating.rate}}</span>
+        <mat-icon class="toolbar icon">stars</mat-icon>
+      </div>
+      <div class="product-details__info">
+        <span>Количество голосовавших: {{product.rating.count}}</span>
+        <mat-icon class="toolbar icon">person</mat-icon>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button class="product-details__button" mat-raised-button color="primary" (click)="addToBasket(product)">В корзину</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

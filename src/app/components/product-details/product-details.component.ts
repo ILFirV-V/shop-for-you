@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { IProduct} from "../../models/product";
 import { map, Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
@@ -10,12 +10,13 @@ import {FavoritesService} from "../../services/favorites.service";
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit{
   product$: Observable<IProduct> | undefined;
   constructor(
     private route: ActivatedRoute,
     private basketService: BasketService,
-    private favoritesService: FavoritesService) {}
+    private favoritesService: FavoritesService
+  ) {}
 
   ngOnInit() {
     this.product$ = this.route.data.pipe(
