@@ -20,23 +20,23 @@ export class BasketComponent implements OnInit, OnDestroy{
   amount: number | undefined;
   private basketSubscription: Subscription | undefined;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.basketSubscription = this.basketService.getProductsFromBasket().subscribe((data: IProductWithQuantity[]) => {
       this.basket = data;
       this.amount = this.calculateAmount();
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.basketSubscription?.unsubscribe();
   }
 
-  getNewShipping(delivery: IShipping) {
+  getNewShipping(delivery: IShipping): void {
     this.delivery = delivery;
     this.amount = this.calculateAmount();
   }
 
-  deleteFromBasket(product: IProductWithQuantity) {
+  deleteFromBasket(product: IProductWithQuantity): void {
     const index = this.basket?.findIndex(p => p.id === product.id) ?? -1;
     this.basket?.splice(index, 1);
     this.basketService.deleteProductInBasketWithLocalStorage(product, true);
@@ -44,7 +44,7 @@ export class BasketComponent implements OnInit, OnDestroy{
     this.checkItemsInBasket();
   }
 
-  minusItemFromBasket(product: IProductWithQuantity) {
+  minusItemFromBasket(product: IProductWithQuantity): void {
     if (product.quantity === 1) {
       this.deleteFromBasket(product);
     } else {
@@ -54,13 +54,13 @@ export class BasketComponent implements OnInit, OnDestroy{
     }
   }
 
-  plusItemFromBasket(product: IProductWithQuantity) {
+  plusItemFromBasket(product: IProductWithQuantity): void {
     product.quantity += 1;
     this.basketService.addProductToBasketWithLocalStorage(product);
     this.amount = this.calculateAmount();
   }
 
-  calculateAmount() {
+  calculateAmount(): number {
     let amount = 0;
     if (this.basket && this.basket.length !== 0) {
       for (const item of this.basket) {

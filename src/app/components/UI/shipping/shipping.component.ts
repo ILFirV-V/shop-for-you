@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {Observable, Subscription, take} from "rxjs";
+import {Observable, Subscription } from "rxjs";
 import {BasketService} from "../../../services/basket.service";
 import {IShipping} from "../../../models/shipping";
 
@@ -17,9 +17,7 @@ export class ShippingComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.shippingCosts$ = this.basketService.getShippingPrices();
-    this.shippingSubscription = this.shippingCosts$.pipe(
-      take(1)
-    ).subscribe(shipments => {
+    this.shippingSubscription = this.shippingCosts$.subscribe(shipments => {
       this.delivery = shipments.find(
         shipment => shipment.type === 'Почта'
       );
