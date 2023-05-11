@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {IProduct, IProductWithQuantity} from "../models/product";
 import {HttpClient} from "@angular/common/http";
-import {combineLatest, map, Observable} from "rxjs";
+import {combineLatest, map, Observable, of} from "rxjs";
 import {ProductsService} from "./products.service";
 import {IShipping} from "../models/shipping";
 
@@ -114,10 +114,26 @@ export class BasketService {
   /**
    * Возвращает Observable, который содержит массив объектов типа IShipping.
    * Каждый объект представляет собой тип доставки и его стоимость и был получен через HTTP-запрос к файлу /assets/shipping.json.
+   * Для GitHub Pages был переделан под возвращение потока данных не из файла в /assets/shipping.json.
    * @returns Observable<IShipping[]>
    */
   getShippingPrices(): Observable<IShipping[]> {
-    return this.http.get<{type: string, price: number}[]>('/assets/shipping.json');
+    // return this.http.get<{type: string, price: number}[]>('/assets/shipping.json'); //не работает в GitHub Pages
+    return of([
+        {
+          "type": "Быстрая",
+          "price": 25.99
+        },
+        {
+          "type": "Почта",
+          "price": 2.99
+        },
+        {
+          "type": "Самовывоз",
+          "price": 0.00
+        }
+      ]
+    )
   }
 
   /**

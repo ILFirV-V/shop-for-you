@@ -27,11 +27,11 @@ export class ShippingComponent implements OnInit, OnDestroy {
     });
   }
 
-  change(shipping: IShipping) {
+  change(shipping: IShipping): void {
     this.newShippingCosts.emit(shipping);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.shippingSubscription?.unsubscribe();
   }
 }
