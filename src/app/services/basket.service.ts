@@ -16,11 +16,11 @@ export class BasketService {
   public basketUpdated: EventEmitter<any> = new EventEmitter();
   constructor(private http: HttpClient, private productService: ProductsService) { }
 
-  addProductToBasket(product: IProduct) {
+  addProductToBasket(product: IProduct): Observable<IProduct> {
     return this.http.post<IProduct>(`${this.urlBasket}`, product);
   }
 
-  getUserBasketProductWithAPI(userId: number) {
+  getUserBasketProductWithAPI(userId: number): Observable<IProduct> {
     return this.http.get<IProduct>(`${this.urlBasket}/user/${userId}`);
   }
 
@@ -104,7 +104,7 @@ export class BasketService {
    * Возвращает количество товаров в корзине пользователя.
    * @returns {number} - количество товаров в корзине пользователя.
    */
-  getProductsCountInBasket() {
+  getProductsCountInBasket(): number {
     const basket: Record<string, number> = this.getUserBasketProductIdsWithLocalStorage();
     let count = 0;
     Object.values(basket).forEach(quantity => count += quantity);

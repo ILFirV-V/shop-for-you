@@ -25,7 +25,7 @@ export class ProductFilterComponent {
 
   constructor(private productService: ProductsService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.productService.getCategoriesByProducts()
       .pipe(
         map(categories => ['all', 'favorites', ...categories]),
@@ -41,19 +41,19 @@ export class ProductFilterComponent {
   @Output() categoryChanged = new EventEmitter<string>();
   @Output() searchChanged = new EventEmitter<string>();
 
-  onSortOptionChange() {
+  onSortOptionChange(): void {
     this.sortOptionChanged.emit(this.currentSortOption);
   }
 
-  onSortOrderChange() {
+  onSortOrderChange(): void {
     this.sortOrderChanged.emit(this.currentSortOrder);
   }
 
-  onCategoryChange() {
+  onCategoryChange(): void {
     this.categoryChanged.emit(this.currentCategory);
   }
 
-  onSearch() {
+  onSearch(): void {
     this.searchChanged.emit(this.searchValue);
   }
 }

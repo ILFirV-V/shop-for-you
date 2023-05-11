@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   favoritesProductsCount: number = 0;
   private favoritesProductsUpdatedSubscription: Subscription | undefined;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.productsCount = this.basketService.getProductsCountInBasket();
     this.favoritesProductsCount = this.favoritesService.getProductsCountInFavorites();
     this.basketUpdatedSubscription = this.basketService.basketUpdated.subscribe(() => {
@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.basketUpdatedSubscription?.unsubscribe();
     this.favoritesProductsUpdatedSubscription?.unsubscribe();
   }

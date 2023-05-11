@@ -18,13 +18,13 @@ export class ProductDetailsComponent implements OnInit{
     private favoritesService: FavoritesService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.product$ = this.route.data.pipe(
       map((data) => data['data'])
     );
   }
 
-  addToBasket(product: IProduct) {
+  addToBasket(product: IProduct): void {
     this.basketService.addProductToBasketWithLocalStorage(product);
   }
 

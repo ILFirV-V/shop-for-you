@@ -14,17 +14,17 @@ export class FavoritesComponent implements OnInit, OnDestroy{
   favorites: IProduct[] | undefined;
   private favoritesSubscription: Subscription | undefined;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.favoritesSubscription = this.favoritesService.getProductsInFavoritesWithLocalStorage().subscribe((data: IProduct[]) => {
       this.favorites = data;
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.favoritesSubscription?.unsubscribe();
   }
 
-  deleteFromFavorites(product: IProduct) {
+  deleteFromFavorites(product: IProduct): void {
     const index: number = this.favorites?.findIndex(p => p.id === product.id) ?? -1;
     this.favorites?.splice(index, 1);
     this.favoritesService.deleteProductInFavoritesWithLocalStorage(product);

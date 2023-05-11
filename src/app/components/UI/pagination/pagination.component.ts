@@ -44,11 +44,11 @@ export class PaginationComponent {
     return Array.from({length: maxPageIndex - minPageIndex + 1}, (_, i) => i + minPageIndex + 1);
   }
 
-  canJumpToNextPage() {
+  canJumpToNextPage(): boolean {
     return this.currentPage < this.totalPages() - 1;
   }
 
-  jumpToPage(page: number) {
+  jumpToPage(page: number): void {
     if (page >= 1 && page <= this.totalPages()) {
       this.currentPage = page;
       this.pageChange.emit(this.currentPage);

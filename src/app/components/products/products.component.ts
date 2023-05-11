@@ -38,7 +38,7 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  onPageChange(page: number) {
+  onPageChange(page: number): void {
     this.currentPage = page;
   }
 
@@ -71,7 +71,7 @@ export class ProductsComponent implements OnInit {
     this.loadProducts();
   }
 
-  onCategories(category: string) {
+  onCategories(category: string): void {
     switch (category) {
       case 'all':
         this.products = this.allProductsNotView;

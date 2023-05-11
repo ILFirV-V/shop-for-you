@@ -71,7 +71,7 @@ export class FavoritesService {
    * Возвращает количество товаров в избранном пользователя.
    * @returns {number} - количество товаров в избранном пользователя.
    */
-  getProductsCountInFavorites() {
+  getProductsCountInFavorites(): number {
     const favorites: string | null = localStorage.getItem("favorites");
     const favoritesProductsIds: number[] = favorites ? JSON.parse(favorites) : [];
     return favoritesProductsIds.length;
