@@ -14,7 +14,6 @@ const routes: Routes = [
   {path: 'favorites', component: FavoritesComponent},
   {path: 'basket', component: BasketComponent},
   {path: '**', redirectTo: "", component: BaseComponent, pathMatch: 'full'},
-
 ];
 
 @NgModule({
